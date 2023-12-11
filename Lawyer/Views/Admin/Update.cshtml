@@ -1,0 +1,68 @@
+﻿@model LawyerDataBase.DAL.Entities.User
+<form method="post">
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            body {
+                background-color: #f2f3f5;
+            }
+
+            .container {
+                margin-top: 50px;
+                max-width: 400px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .form-group label {
+                font-weight: bold;
+            }
+
+            .btn-cancel {
+                background-color: #7289da;
+                border-color: #7289da;
+            }
+
+            .btn-update {
+                background-color: #43b581;
+                border-color: #43b581;
+            }
+
+            .btn-container {
+                text-align: center;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input asp-for="@Model.Name" type="text" class="form-control" id="name" value="@Model.Name">
+                </div>
+                <div class="form-group">
+                    <label for="login">Login:</label>
+                    <input asp-for="@Model.Login" type="text" class="form-control" id="login" value="@Model.Login">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input asp-for="@Model.Password" type="password" class="form-control" id="password" value="@Model.Password">
+                </div>
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="DateOfCreating" value="@Model.DateOfCreating" />
+                <input type="hidden" name="UserRoleId" value="@Model.UserRoleID" />
+
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-update" asp-action="Update" asp-controller="Admin">Update</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
+</form>

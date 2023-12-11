@@ -1,0 +1,107 @@
+﻿@model IEnumerable<LawyerDataBase.DAL.Entities.User>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Table</title>
+    <style>
+        body {
+            background-color: #f2f3f5;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #ffffff;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #7289da;
+            color: #ffffff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #e2e3e5;
+        }
+
+        button {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        th, td {
+            border-bottom: 1px solid #dddddd;
+        }
+
+            th:first-child, td:first-child {
+                border-left: none;
+            }
+
+            th:last-child, td:last-child {
+                border-right: none;
+            }
+
+        .action-button {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+        }
+
+            .action-button img {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+            }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Date of Creating</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                <tr>
+                    <td>@Model.ElementAt(i).Name</td>
+                    <td>@Model.ElementAt(i).Login</td>
+                    <td>@Model.ElementAt(i).Password</td>
+                    <td>@Model.ElementAt(i).DateOfCreating</td>
+                    <td>
+                        <div class="btn-group d-flex" role="group">
+                            <form method="get" action="/Admin/Update">
+                                <input type="hidden" name="id" value="@Model.ElementAt(i).Id" />
+                                <button type="submit" class="btn btn-success flex-fill">Update</button>
+                            </form>
+
+                            <form method="post" action="@Url.Action("Delete", "Admin", new { id = Model.ElementAt(i).Id })">
+                                <button type="submit" class="btn btn-danger flex-fill">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
